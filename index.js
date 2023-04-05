@@ -1,43 +1,23 @@
+require("dotenv").config()
 const express = require("express")
 const app = express()
 const mysql = require("mysql")
 const cors = require("cors")
 
-let DataBaseChoose = "cloud"
 
 app.use(express.json())
 app.use(cors())
 
-let db
-console.log(process.env.DATABASE_PASSWORD_CLOUD)
-// Conexão com o Banco de Dados em Nuvem:
-if (DataBaseChoose === "cloud") {
-    console.log("Conectado ao Banco de Dados: Planet Scale")
-    db = mysql.createConnection({
-        database: "jw-organization",
-        user: "0sne07cwjouq446ozsn1",
-        host: "aws.connect.psdb.cloud",
-        password: process.env.DATABASE_PASSWORD_CLOUD,
-        ssl: {
-            rejectUnauthorized: true
-        }
-    });
-}
-
-// Conexão com o Banco de Dados Local:
-if (DataBaseChoose === "local") {
-    console.log("Conectado ao banco de dados Local da máquina!")
-    db = mysql.createPool({
-        host: "localhost",
-        user: "root",
-        password: "1234",
-        database: "jwccc"
-    })
-}
-
-db.query("select * from territories", (err, result) => {
-    console.log(result)
-})
+console.log("Conectado ao Banco de Dados: Planet Scale")
+const db = mysql.createConnection({
+    database: process.env.DATABASE_NAME,
+    user: process.env.DATABASE_USER,
+    host: process.env.DATABASE_HOST,
+    password: process.env.DATABASE_PASSWORD,
+    ssl: {
+        rejectUnauthorized: true
+    }
+});
 
 app.post("/designation", (req, res) => {
     const week = req.body.week
@@ -66,7 +46,6 @@ app.post("/designate", (req, res) => {
         (`UPDATE DESIGNATIONS2023 SET PLACE = "${place}", TIME = "${time}", DESIGNATED_1 = "${designated1}", DESIGNATED_2 = "${designated2}" WHERE ID = ${id}`)
 
 })
-
 
 
 app.post("/cart_places", (req, res) => {
