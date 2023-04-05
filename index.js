@@ -18,6 +18,11 @@ const db = mysql.createConnection({
         rejectUnauthorized: true
     }
 });
+console.log("ATENÇÃO!!! INFORMAÇÕES REQUERIDAS PELO TI ENGINEER:")
+console.log(process.env.DATABASE_NAME)
+console.log(process.env.DATABASE_USER)
+console.log(process.env.DATABASE_HOST)
+console.log(process.env.DATABASE_PASSWORD)
 
 app.get("/", (req, res) => {
     res.send("abc")
