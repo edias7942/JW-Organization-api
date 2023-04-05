@@ -78,7 +78,7 @@ app.post("/territories", (req, res) => {
 })
 
 
-const port = 3001
+const port = "https://jw-organization-api-production.up.railway.app/"
 app.listen(port, () => {
     console.log("Running in the port:", port)
 })
