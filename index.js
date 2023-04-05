@@ -77,8 +77,3 @@ app.post("/territories", (req, res) => {
             })
 })
 
-
-const port = `${process.env.SITE_HOST}${process.env.PORT}`
-app.listen(port, () => {
-    console.log("Running in the port:", port)
-})
