@@ -78,7 +78,7 @@ app.post("/territories", (req, res) => {
 })
 
 
-// const port = "https://jw-organization-api-production.up.railway.app/"
-// app.listen(port, () => {
-//     console.log("Running in the port:", port)
-// })
+const port = 3333
+app.listen(port, () => {
+    console.log("Running in the port:", port)
+})
