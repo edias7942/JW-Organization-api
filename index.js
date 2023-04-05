@@ -19,6 +19,10 @@ const db = mysql.createConnection({
     }
 });
 
+app.get("/", (req, res) => {
+    res.send("abc")
+})
+
 app.post("/designation", (req, res) => {
     const week = req.body.week
     const positionInWeek = req.body.positionInWeek
