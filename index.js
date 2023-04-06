@@ -25,7 +25,7 @@ console.log(process.env.DATABASE_HOST)
 console.log(process.env.DATABASE_PASSWORD)
 
 app.get("/", (req, res) => {
-    res.send("abc")
+    res.send(process.env.DATABASE_NAME)
 })
 
 app.post("/designation", (req, res) => {
