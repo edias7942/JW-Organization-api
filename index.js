@@ -4,6 +4,7 @@ const app = express()
 const mysql = require("mysql")
 const cors = require("cors")
 
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors())
@@ -18,14 +19,9 @@ const db = mysql.createConnection({
         rejectUnauthorized: true
     }
 });
-console.log("ATENÇÃO!!! INFORMAÇÕES REQUERIDAS PELO TI ENGINEER:")
-console.log(process.env.DATABASE_NAME)
-console.log(process.env.DATABASE_USER)
-console.log(process.env.DATABASE_HOST)
-console.log(process.env.DATABASE_PASSWORD)
 
 app.get("/", (req, res) => {
-    res.send(process.env.DATABASE_NAME)
+    res.send("Jw Organization api")
 })
 
 app.post("/designation", (req, res) => {
@@ -78,7 +74,6 @@ app.post("/territories", (req, res) => {
 })
 
 
-const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log("Running in the port:", PORT)
 })
